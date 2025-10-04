@@ -120,9 +120,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\scott\source\SpreadsheetMaker\OpenXLSX\OpenXLSX\build;$(SolutionDir)/OpenXLSX/OpenXLSX/external/pugixml;$(SolutionDir)/OpenXLSX/OpenXLSX/external/zippy;$(SolutionDir)/OpenXLSX/OpenXLSX/external/nowide;$(SolutionDir)/OpenXLSX/OpenXLSX/headers;$(SolutionDir)/OpenXLSX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <Optimization>MaxSpeed</Optimization>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <Optimization>Disabled</Optimization>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
