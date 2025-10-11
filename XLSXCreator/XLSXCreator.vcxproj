@@ -84,6 +84,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="IZipArchive.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="XLDocument.h" />
   </ItemGroup>

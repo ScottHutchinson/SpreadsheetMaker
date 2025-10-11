@@ -1,6 +1,6 @@
 // XLDocument.h
 #pragma once
-#include <string_view>
+#include "IZipArchive.hpp"
 
 #ifdef  XLSXCREATOR_EXPORTS 
    /*Enabled as "export" while compiling the dll project*/
@@ -13,9 +13,12 @@
 namespace XLSXCreator {
 
     class DLLEXPORT XLDocument {
+        IZipArchive m_archive{};
+
+        void open(std::string_view xlsxFilePath);
+        void create(std::string_view xlsxFilePath);
     public:
         static void FromTextFile(std::string_view textFilePath, std::string_view xlsxFilePath, const char delimiter = ',');
-        void Create(std::string_view xlsxFilePath);
     };
 
 } // namespace XLSXCreator
