@@ -87,6 +87,7 @@
     <ClInclude Include="IZipArchive.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="XLDocument.h" />
+    <ClInclude Include="XLSharedStrings.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -95,6 +96,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="XLDocument.cpp" />
+    <ClCompile Include="XLSharedStrings.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

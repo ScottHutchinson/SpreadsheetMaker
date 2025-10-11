@@ -1,6 +1,9 @@
 // XLDocument.h
 #pragma once
 #include "IZipArchive.hpp"
+#include "XLXmlData.h"
+#include <deque>
+#include <list>
 
 #ifdef  XLSXCREATOR_EXPORTS 
    /*Enabled as "export" while compiling the dll project*/
@@ -11,7 +14,7 @@
 #endif
 
 namespace XLSXCreator {
-
+    
     class DLLEXPORT XLDocument {
         IZipArchive m_archive{};
         std::string m_filePath;      /**< The path to the original file*/
