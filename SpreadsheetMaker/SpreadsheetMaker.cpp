@@ -21,7 +21,8 @@ int main() {
     std::cin >> suffix;
     using namespace std::filesystem;
     using namespace OpenXLSX;
-    const string inputFilePathStr{ "C:\\Users\\scott\\Downloads\\products-10000.csv" };
+    //const string inputFilePathStr{ "C:\\Users\\scott\\Downloads\\products-10000.csv" };
+    const string inputFilePathStr{ "C:\\Users\\scott\\Downloads\\large_string_data.csv" };
     std::ifstream file(inputFilePathStr);
     const auto count = static_cast<uint32_t>(std::count_if(std::istreambuf_iterator<char>{file}, {}, [](char c) { return c == '\n'; }));
     std::cout << "Number of lines in the file = " << count << "\n";
@@ -38,7 +39,7 @@ int main() {
     XLWorkbook wb = doc.workbook();
     XLWorksheet ws = wb.worksheet("Sheet1");
     vector<XLCellValue> cellValues;
-    cellValues.reserve(14); // number of columns
+    cellValues.reserve(600); // number of columns
     string line;
     for (auto& row : ws.rows(count)) {
         cellValues.clear();
@@ -52,10 +53,16 @@ int main() {
 
         row.values() = cellValues;
     }
+    std::chrono::steady_clock::time_point xmlEnd = std::chrono::steady_clock::now();
+    std::cout << "XML Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(xmlEnd - begin).count() << " milliseconds" << std::endl;
     doc.save();
+    std::chrono::steady_clock::time_point saveEnd = std::chrono::steady_clock::now();
+    std::cout << "Save Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(saveEnd - xmlEnd).count() << " milliseconds" << std::endl;
     doc.close();
+    std::chrono::steady_clock::time_point closeEnd = std::chrono::steady_clock::now();
+    std::cout << "Close Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(closeEnd - saveEnd).count() << " milliseconds" << std::endl;
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    std::cout << "Total Elapsed Time = " << std::chrono::duration_cast<std::chrono::seconds>(end - begin).count() << " seconds" << std::endl;
+    std::cout << "Total Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " milliseconds" << std::endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
