@@ -4,3 +4,26 @@ XML Elapsed Time = 5204 milliseconds
 Save Elapsed Time = 249 milliseconds
 Close Elapsed Time = 11 milliseconds
 Total Elapsed Time = 5465 milliseconds
+
+# File specifications
+num_rows = 10000
+num_cols = 600
+num_unique_strings = 100000
+Number of lines in the file = 10001
+"C:\\Users\\scott\\Downloads\\large_string_data baseline.xlsx"
+XML Elapsed Time = 1836189 milliseconds
+Save Elapsed Time = 7090 milliseconds
+Close Elapsed Time = 691 milliseconds
+Total Elapsed Time = 1843973 milliseconds
+
+# File specifications
+num_rows = 2000
+num_cols = 600
+num_unique_strings = 100000
+filename = 'large_string_data.csv'
+Number of lines in the file = 2001
+"C:\\Users\\scott\\Downloads\\large_string_data baseline.xlsx"
+XML Elapsed Time = 344724 milliseconds
+Save Elapsed Time = 1507 milliseconds
+Close Elapsed Time = 117 milliseconds
+Total Elapsed Time = 346350 milliseconds

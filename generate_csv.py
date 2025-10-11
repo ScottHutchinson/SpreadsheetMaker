@@ -3,7 +3,7 @@ import random
 import string
 
 # File specifications
-num_rows = 10000
+num_rows = 2000
 num_cols = 600
 num_unique_strings = 100000
 filename = 'large_string_data.csv'
