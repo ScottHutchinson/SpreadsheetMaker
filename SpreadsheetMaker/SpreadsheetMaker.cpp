@@ -5,12 +5,15 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <ranges>
 #include <sstream>
 #include <string>
+#include <string_view>
 #include <vector>
 #include "OpenXLSX/OpenXLSX.hpp"
 
 using std::string;
+using std::string_view;
 using std::vector;
 
 int main() {
@@ -18,31 +21,36 @@ int main() {
     std::cin >> suffix;
     using namespace std::filesystem;
     using namespace OpenXLSX;
-    const string inputFilePathStr{ "C:\\Users\\scott\\Downloads\\products-100000.csv" };
+    const string inputFilePathStr{ "C:\\Users\\scott\\Downloads\\products-10000.csv" };
     std::ifstream file(inputFilePathStr);
     const auto count = static_cast<uint32_t>(std::count_if(std::istreambuf_iterator<char>{file}, {}, [](char c) { return c == '\n'; }));
     std::cout << "Number of lines in the file = " << count << "\n";
     file.seekg(0); // return the stream to the beginning of the file.
     path inputFilePath{ inputFilePathStr };
-    path outputFilePath = inputFilePath.filename().concat(suffix).replace_extension("xlsx");
+    path outputFilePath = inputFilePath.stem(); // file name without extension
+    outputFilePath += " ";
+    outputFilePath += suffix;
+    outputFilePath = inputFilePath.parent_path() / outputFilePath.replace_extension("xlsx");
+    std::cout << outputFilePath << "\n";
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     XLDocument doc;
     doc.create(outputFilePath.string(), true);
     XLWorkbook wb = doc.workbook();
     XLWorksheet ws = wb.worksheet("Sheet1");
-
-    std::ifstream file(inputFilePath);
+    vector<XLCellValue> cellValues;
+    cellValues.reserve(14); // number of columns
     string line;
-    uint32_t row{ 1 };
-    while (std::getline(file, line)) {
+    for (auto& row : ws.rows(count)) {
+        cellValues.clear();
+        std::getline(file, line);
         std::stringstream ss(line);
         string cellValue;
-        uint16_t col{ 1 };
+        // TODO: Handle quoted string values.
         while (std::getline(ss, cellValue, ',')) {
-            ws.cell(row, col).value() = cellValue;
-            col++;
+            cellValues.emplace_back(cellValue);
         }
-        row++;
+
+        row.values() = cellValues;
     }
     doc.save();
     doc.close();
