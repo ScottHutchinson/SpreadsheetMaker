@@ -88,7 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\scott\source\SpreadsheetMaker\OpenXLSX\OpenXLSX\build;$(SolutionDir)/OpenXLSX/OpenXLSX/external/pugixml;$(SolutionDir)/OpenXLSX/OpenXLSX/external/zippy;$(SolutionDir)/OpenXLSX/OpenXLSX/external/nowide;$(SolutionDir)/OpenXLSX/OpenXLSX/headers;$(SolutionDir)/OpenXLSX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\scott\source\SpreadsheetMaker\OpenXLSX\OpenXLSX\build;$(SolutionDir)/OpenXLSX/OpenXLSX/external/pugixml;$(SolutionDir)/OpenXLSX/OpenXLSX/external/zippy;$(SolutionDir)/OpenXLSX/OpenXLSX/external/nowide;$(SolutionDir)/OpenXLSX/OpenXLSX/headers;$(SolutionDir)/OpenXLSX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\scott\source\SpreadsheetMaker\OpenXLSX\OpenXLSX\build;$(SolutionDir)/OpenXLSX/OpenXLSX/external/pugixml;$(SolutionDir)/OpenXLSX/OpenXLSX/external/zippy;$(SolutionDir)/OpenXLSX/OpenXLSX/external/nowide;$(SolutionDir)/OpenXLSX/OpenXLSX/headers;$(SolutionDir)/OpenXLSX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <Optimization>Disabled</Optimization>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
@@ -138,7 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\scott\source\SpreadsheetMaker\OpenXLSX\OpenXLSX\build;$(SolutionDir)/OpenXLSX/OpenXLSX/external/pugixml;$(SolutionDir)/OpenXLSX/OpenXLSX/external/zippy;$(SolutionDir)/OpenXLSX/OpenXLSX/external/nowide;$(SolutionDir)/OpenXLSX/OpenXLSX/headers;$(SolutionDir)/OpenXLSX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
@@ -151,8 +151,8 @@
     <ClCompile Include="SpreadsheetMaker.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenXLSX\OpenXLSX\build\OpenXLSX.vcxproj">
-      <Project>{1dacf3da-78f9-3d1f-9eb1-afa27bc63f9c}</Project>
+    <ProjectReference Include="..\XLSXCreator\XLSXCreator.vcxproj">
+      <Project>{08e2beda-3669-47e2-808c-a4878911ff14}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

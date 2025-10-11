@@ -10,7 +10,7 @@
 #include <string>
 #include <string_view>
 #include <vector>
-#include "OpenXLSX/OpenXLSX.hpp"
+#include "XLSXCreator/XLDocument.h"
 
 using std::string;
 using std::string_view;
@@ -20,7 +20,6 @@ int main() {
     string suffix;
     std::cin >> suffix;
     using namespace std::filesystem;
-    using namespace OpenXLSX;
     //const string inputFilePathStr{ "C:\\Users\\scott\\Downloads\\products-10000.csv" };
     const string inputFilePathStr{ "C:\\Users\\scott\\Downloads\\large_string_data.csv" };
     std::ifstream file(inputFilePathStr);
@@ -34,33 +33,7 @@ int main() {
     outputFilePath = inputFilePath.parent_path() / outputFilePath.replace_extension("xlsx");
     std::cout << outputFilePath << "\n";
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-    XLDocument doc;
-    doc.create(outputFilePath.string(), true);
-    XLWorkbook wb = doc.workbook();
-    XLWorksheet ws = wb.worksheet("Sheet1");
-    vector<XLCellValue> cellValues;
-    cellValues.reserve(600); // number of columns
-    string line;
-    for (auto& row : ws.rows(count)) {
-        cellValues.clear();
-        std::getline(file, line);
-        std::stringstream ss(line);
-        string cellValue;
-        // TODO: Handle quoted string values.
-        while (std::getline(ss, cellValue, ',')) {
-            cellValues.emplace_back(cellValue);
-        }
-
-        row.values() = cellValues;
-    }
-    std::chrono::steady_clock::time_point xmlEnd = std::chrono::steady_clock::now();
-    std::cout << "XML Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(xmlEnd - begin).count() << " milliseconds" << std::endl;
-    doc.save();
-    std::chrono::steady_clock::time_point saveEnd = std::chrono::steady_clock::now();
-    std::cout << "Save Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(saveEnd - xmlEnd).count() << " milliseconds" << std::endl;
-    doc.close();
-    std::chrono::steady_clock::time_point closeEnd = std::chrono::steady_clock::now();
-    std::cout << "Close Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(closeEnd - saveEnd).count() << " milliseconds" << std::endl;
+    XLSXCreator::XLDocument::FromTextFile(inputFilePathStr, outputFilePath.string());
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     std::cout << "Total Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " milliseconds" << std::endl;
 }

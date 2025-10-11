@@ -5,8 +5,6 @@ VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpreadsheetMaker", "SpreadsheetMaker\SpreadsheetMaker.vcxproj", "{9D04177F-69C3-4173-9213-953D8234078F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenXLSX", "OpenXLSX\OpenXLSX\build\OpenXLSX.vcxproj", "{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XLSXCreator", "XLSXCreator\XLSXCreator.vcxproj", "{08E2BEDA-3669-47E2-808C-A4878911FF14}"
 EndProject
 Global
@@ -25,22 +23,12 @@ Global
 		{9D04177F-69C3-4173-9213-953D8234078F}.Release|x64.Build.0 = Release|x64
 		{9D04177F-69C3-4173-9213-953D8234078F}.Release|x86.ActiveCfg = Release|Win32
 		{9D04177F-69C3-4173-9213-953D8234078F}.Release|x86.Build.0 = Release|Win32
-		{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}.Debug|x64.ActiveCfg = Debug|x64
-		{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}.Debug|x64.Build.0 = Debug|x64
-		{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}.Debug|x86.ActiveCfg = Debug|x64
-		{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}.Debug|x86.Build.0 = Debug|x64
-		{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}.Release|x64.ActiveCfg = Release|x64
-		{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}.Release|x64.Build.0 = Release|x64
-		{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}.Release|x86.ActiveCfg = Release|x64
-		{1DACF3DA-78F9-3D1F-9EB1-AFA27BC63F9C}.Release|x86.Build.0 = Release|x64
 		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Debug|x64.ActiveCfg = Debug|x64
 		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Debug|x64.Build.0 = Debug|x64
-		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Debug|x86.ActiveCfg = Debug|Win32
-		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Debug|x86.Build.0 = Debug|Win32
+		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Debug|x86.ActiveCfg = Debug|x64
 		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Release|x64.ActiveCfg = Release|x64
 		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Release|x64.Build.0 = Release|x64
-		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Release|x86.ActiveCfg = Release|Win32
-		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Release|x86.Build.0 = Release|Win32
+		{08E2BEDA-3669-47E2-808C-A4878911FF14}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
