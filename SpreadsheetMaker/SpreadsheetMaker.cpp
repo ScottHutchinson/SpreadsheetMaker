@@ -2,6 +2,7 @@
 //
 
 #include <chrono>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -13,11 +14,20 @@ using std::string;
 using std::vector;
 
 int main() {
-    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    string suffix;
+    std::cin >> suffix;
+    using namespace std::filesystem;
     using namespace OpenXLSX;
-    const string inputFilePath{ "C:\\Users\\scott\\Downloads\\products-10000.csv" };
+    const string inputFilePathStr{ "C:\\Users\\scott\\Downloads\\products-100000.csv" };
+    std::ifstream file(inputFilePathStr);
+    const auto count = static_cast<uint32_t>(std::count_if(std::istreambuf_iterator<char>{file}, {}, [](char c) { return c == '\n'; }));
+    std::cout << "Number of lines in the file = " << count << "\n";
+    file.seekg(0); // return the stream to the beginning of the file.
+    path inputFilePath{ inputFilePathStr };
+    path outputFilePath = inputFilePath.filename().concat(suffix).replace_extension("xlsx");
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     XLDocument doc;
-    doc.create("C:\\Users\\scott\\Downloads\\products-10000.xlsx", true);
+    doc.create(outputFilePath.string(), true);
     XLWorkbook wb = doc.workbook();
     XLWorksheet ws = wb.worksheet("Sheet1");
 
@@ -37,7 +47,7 @@ int main() {
     doc.save();
     doc.close();
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    std::cout << "Elapsed Time = " << std::chrono::duration_cast<std::chrono::seconds>(end - begin).count() << " seconds" << std::endl;
+    std::cout << "Total Elapsed Time = " << std::chrono::duration_cast<std::chrono::seconds>(end - begin).count() << " seconds" << std::endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
