@@ -9,7 +9,11 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
+#include <deque>
 #include <fstream>
+#include <list>
+#include <memory>
+#include <string>
 #include <string_view>
 
 #endif //PCH_H

@@ -52,9 +52,6 @@ YM      M9  MM    MM MM       MM    MM   d'  `MM.    MM            MM   d'  `MM.
 #   pragma warning(disable : 4275)
 #endif // _MSC_VER
 
-#include <memory>
-#include <string>
-
 #ifdef  XLSXCREATOR_EXPORTS 
  /*Enabled as "export" while compiling the dll project*/
 #define DLLEXPORT __declspec(dllexport)  

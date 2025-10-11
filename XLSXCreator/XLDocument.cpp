@@ -358,6 +358,29 @@ namespace XLSXCreator {
         0x0a, 0x00, 0x0a, 0x00, 0x80, 0x02, 0x00, 0x00, 0x8c, 0x1b, 0x00, 0x00, 0x00, 0x00
     };
 
+    /**
+     * @details The document is closed by deleting the temporary folder structure.
+     */
+    void XLDocument::close() {
+        if (m_archive.isValid()) m_archive.close();
+
+        m_filePath.clear();
+
+        //m_xmlSavingDeclaration = XLXmlSavingDeclaration();
+
+        //m_data.clear();
+        //m_sharedStringCache.clear();             // 2024-12-18 BUGFIX: clear shared strings cache - addresses issue #283
+        //m_sharedStrings = XLSharedStrings();  //
+
+        //m_docRelationships = XLRelationships();
+        //m_wbkRelationships = XLRelationships();
+        //m_contentTypes = XLContentTypes();
+        //m_appProperties = XLAppProperties();
+        //m_coreProperties = XLProperties();
+        //m_styles = XLStyles();
+        //m_workbook = XLWorkbook();
+    }
+
     /*
      * @details The openDocument method opens the .xlsx package in the following manner:
      * - Check if a document is already open. If yes, close it.
@@ -366,7 +389,8 @@ namespace XLSXCreator {
      * - load the contents into the data structure for manipulation.
      */
     void XLDocument::open(std::string_view /*xlsxFilePath*/) {
-
+        // Check if a document is already open. If yes, close it.
+        if (m_archive.isOpen()) close(); // TBD: consider throwing if a file is already open.
     }
 
     void XLDocument::create(std::string_view xlsxFilePath) {
