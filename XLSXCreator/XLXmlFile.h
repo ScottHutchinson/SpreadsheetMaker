@@ -5,12 +5,15 @@
 
 namespace XLSXCreator {
 
+    using XMLNode = pugi::xml_node;
+
     class XLDocument;
 
     using XMLDocument = pugi::xml_document;
 
     class XLXmlFile {
     public:
+        XLXmlFile() = default;
         /**
          * @brief Constructor. Creates an object based on the xmlData input.
          * @param xmlData An XLXmlData object with the XML data to be represented by the object.

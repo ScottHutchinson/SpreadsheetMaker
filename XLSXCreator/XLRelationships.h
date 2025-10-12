@@ -3,8 +3,6 @@
 
 namespace XLSXCreator {
 
-    using XMLNode = pugi::xml_node;
-
     class XLRelationshipItem {
     private:                                         // ---------- Private Member Variables ---------- //
         std::unique_ptr<XMLNode> m_relationshipNode; /**< An XMLNode object with the relationship item */

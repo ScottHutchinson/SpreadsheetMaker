@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "XLDocument.h"
+#include "XLSheet.h"
 #include "XLWorkbook.h"
 #include "XLCommandQuery.h"
 

@@ -22,6 +22,22 @@ namespace XLSXCreator {
          * @param xmlData
          */
         explicit XLSheet(XLXmlData* xmlData);
+
+        template<typename T, typename = std::enable_if_t<std::is_same_v<T, XLWorksheet> || std::is_same_v<T, XLChartsheet>>>
+        T get() const {
+            try {
+                if constexpr (std::is_same<T, XLWorksheet>::value)
+                    return std::get<XLWorksheet>(m_sheet);
+
+                //else if constexpr (std::is_same<T, XLChartsheet>::value)
+                //    return std::get<XLChartsheet>(m_sheet);
+            }
+
+            catch (const std::bad_variant_access&) {
+                throw XLSheetError("XLSheet object does not contain the requested sheet type.");
+            }
+        }
+
     };
 
 } // namespace XLSXCreator
