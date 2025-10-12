@@ -1,6 +1,10 @@
 // XLDocument.h
 #pragma once
 #include "IZipArchive.hpp"
+#include "XLCommandQuery.h"
+#include "XLRelationships.h"
+#include "XLSharedStrings.h"
+#include "XLWorkbook.h"
 #include "XLXmlData.h"
 #include <deque>
 #include <list>
@@ -15,19 +19,30 @@
 
 namespace XLSXCreator {
     
-    class DLLEXPORT XLDocument {
+    class XLDocument {
+        XLRelationships m_wbkRelationships{};
+        XLWorkbook m_workbook{};
         IZipArchive m_archive{};
         std::string m_filePath;      /**< The path to the original file*/
-        mutable std::list<XLXmlData>    m_data{};
-        mutable std::deque<std::string> m_sharedStringCache{};
-        mutable XLSharedStrings         m_sharedStrings{};
+        std::list<XLXmlData> m_data;
+        std::deque<std::string> m_sharedStringCache;
+        XLSharedStrings m_sharedStrings{};
 
         void close();
         void open(std::string_view xlsxFilePath);
         void create(std::string_view xlsxFilePath);
 
     public:
-        static void FromTextFile(std::string_view textFilePath, std::string_view xlsxFilePath, const char delimiter = ',');
+
+        XLQuery execQuery(const XLQuery& query) const;
+
+        /**
+         * @brief Get the underlying workbook object, as a const object.
+         * @return A const pointer to the XLWorkbook object.
+         */
+        XLWorkbook workbook() const;
+
+        static void DLLEXPORT FromTextFile(std::string_view textFilePath, std::string_view xlsxFilePath, const char delimiter = ',');
     };
 
 } // namespace XLSXCreator

@@ -83,20 +83,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="external\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="external\pugixml\pugixml.hpp" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IZipArchive.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="XLCommandQuery.h" />
     <ClInclude Include="XLDocument.h" />
+    <ClInclude Include="XLRelationships.h" />
     <ClInclude Include="XLSharedStrings.h" />
+    <ClInclude Include="XLSheet.h" />
+    <ClInclude Include="XLWorkbook.h" />
+    <ClInclude Include="XLWorksheet.h" />
+    <ClInclude Include="XLXmlData.h" />
+    <ClInclude Include="XLXmlFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="external\pugixml\pugixml.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="XLDocument.cpp" />
+    <ClCompile Include="XLRelationships.cpp" />
     <ClCompile Include="XLSharedStrings.cpp" />
+    <ClCompile Include="XLSheet.cpp" />
+    <ClCompile Include="XLWorkbook.cpp" />
+    <ClCompile Include="XLWorksheet.cpp" />
+    <ClCompile Include="XLXmlData.cpp" />
+    <ClCompile Include="XLXmlFile.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

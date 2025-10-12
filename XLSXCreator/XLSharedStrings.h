@@ -4,6 +4,6 @@
 namespace XLSXCreator {
 
     class XLSharedStrings /*: public XLXmlFile*/ {
-    }
+    };
 
 } // namespace XLSXCreator

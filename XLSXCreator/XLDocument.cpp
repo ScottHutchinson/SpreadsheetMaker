@@ -368,9 +368,9 @@ namespace XLSXCreator {
 
         //m_xmlSavingDeclaration = XLXmlSavingDeclaration();
 
-        //m_data.clear();
-        //m_sharedStringCache.clear();             // 2024-12-18 BUGFIX: clear shared strings cache - addresses issue #283
-        //m_sharedStrings = XLSharedStrings();  //
+        m_data.clear();
+        m_sharedStringCache.clear();             // 2024-12-18 BUGFIX: clear shared strings cache - addresses issue #283
+        m_sharedStrings = XLSharedStrings();  //
 
         //m_docRelationships = XLRelationships();
         //m_wbkRelationships = XLRelationships();
@@ -378,7 +378,7 @@ namespace XLSXCreator {
         //m_appProperties = XLAppProperties();
         //m_coreProperties = XLProperties();
         //m_styles = XLStyles();
-        //m_workbook = XLWorkbook();
+        m_workbook = XLWorkbook();
     }
 
     /*
@@ -402,11 +402,78 @@ namespace XLSXCreator {
         open(xlsxFilePath);
     }
 
+    /**
+     * @details Get a const pointer to the underlying XLWorkbook object.
+     */
+    XLWorkbook XLDocument::workbook() const { return m_workbook; }
+
+    XLQuery XLDocument::execQuery(const XLQuery& query) const {
+        switch (query.type()) {
+        //case XLQueryType::QuerySheetName:
+        //    return XLQuery(query).setResult(m_workbook.sheetName(query.getParam<std::string>("sheetID")));
+
+        //case XLQueryType::QuerySheetIndex: { // 2025-01-13: implemented query - previously no index was determined at all
+        //    std::string queriedSheetName = m_workbook.sheetName(query.getParam<std::string>("sheetID"));
+        //    for (uint16_t sheetIndex = 1; sheetIndex <= workbook().sheetCount(); ++sheetIndex) {
+        //        if (workbook().sheet(sheetIndex).name() == queriedSheetName)
+        //            return XLQuery(query).setResult(std::to_string(sheetIndex));
+        //    }
+
+        //    { // if loop failed to locate queriedSheetName:
+        //        using namespace std::literals::string_literals;
+        //        throw XLInternalError("Could not determine a sheet index for sheet named \"" + queriedSheetName + "\"");
+        //    }
+        //}
+        //case XLQueryType::QuerySheetVisibility:
+        //    return XLQuery(query).setResult(m_workbook.sheetVisibility(query.getParam<std::string>("sheetID")));
+
+        //case XLQueryType::QuerySheetType: {
+        //    const XLRelationshipType t = m_wbkRelationships.relationshipById(query.getParam<std::string>("sheetID")).type();
+        //    if (t == XLRelationshipType::Worksheet)
+        //        return XLQuery(query).setResult(XLContentType::Worksheet);
+        //    if (t == XLRelationshipType::Chartsheet)
+        //        return XLQuery(query).setResult(XLContentType::Chartsheet);
+        //    return XLQuery(query).setResult(XLContentType::Unknown);
+        //}
+        //case XLQueryType::QuerySheetIsActive:
+        //    return XLQuery(query).setResult(m_workbook.sheetIsActive(query.getParam<std::string>("sheetID")));
+
+        //case XLQueryType::QuerySheetID:
+        //    return XLQuery(query).setResult(m_workbook.sheetVisibility(query.getParam<std::string>("sheetID")));
+
+        //case XLQueryType::QuerySheetRelsID:
+        //    return XLQuery(query).setResult(
+        //        m_wbkRelationships.relationshipByTarget(query.getParam<std::string>("sheetPath").substr(4)).id());
+
+        case XLQueryType::QuerySheetRelsTarget:
+            // ===== 2024-12-15: XLRelationshipItem::target() returns the unmodified Relationship "Target" property
+            //                     - can be absolute or relative and must be handled by the caller
+            //                   The only invocation as of today is in XLWorkbook::sheet(const std::string& sheetName) and handles this
+            return XLQuery(query).setResult(m_wbkRelationships.relationshipById(query.getParam<std::string>("sheetID")).target());
+
+        case XLQueryType::QuerySharedStrings:
+            return XLQuery(query).setResult(m_sharedStrings);
+
+        //case XLQueryType::QueryXmlData: {
+        //    const auto result = std::find_if(m_data.begin(), m_data.end(), [&](const XLXmlData& item) {
+        //        return item.getXmlPath() == query.getParam<std::string>("xmlPath");
+        //        });
+        //    if (result == m_data.end())
+        //        throw XLInternalError("Path does not exist in zip archive (" + query.getParam<std::string>("xmlPath") + ")");
+        //    return XLQuery(query).setResult(&*result);
+        //}
+        //default:
+        //    throw XLInternalError("XLDocument::execQuery: unknown query type " + std::to_string(static_cast<uint8_t>(query.type())));
+        } // switch (query.type())
+
+        return query;    // Needed in order to suppress compiler warning
+    } // XLDocument::execQuery
+
     void XLDocument::FromTextFile(std::string_view /*textFilePath*/, std::string_view xlsxFilePath, const char /*delimiter*/) {
         XLDocument doc;
         doc.create(xlsxFilePath);
-        //XLWorkbook wb = doc.workbook();
-        //XLWorksheet ws = wb.worksheet("Sheet1");
+        XLWorkbook wb = doc.workbook();
+        XLWorksheet ws = wb.worksheet("Sheet1");
         //vector<XLCellValue> cellValues;
         //cellValues.reserve(600); // number of columns
         //string line;

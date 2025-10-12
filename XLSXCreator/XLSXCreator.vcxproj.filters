@@ -30,6 +30,33 @@
     <ClInclude Include="XLSharedStrings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="XLWorkbook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLWorksheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="external\pugixml\pugiconfig.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="external\pugixml\pugixml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLXmlFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLCommandQuery.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLXmlData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLRelationships.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLSheet.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -42,6 +69,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="XLSharedStrings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLWorkbook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLWorksheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="external\pugixml\pugixml.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLXmlFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLXmlData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLRelationships.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLSheet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
