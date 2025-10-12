@@ -547,6 +547,13 @@ namespace pugi
         xml_node next_sibling(const char_t* name) const;
         xml_node previous_sibling(const char_t* name) const;
 
+        /**
+         * @brief get next node sibling that matches type
+         * @param type_ the pugi::xml_node_type to match
+         * @return a valid sibling matching the node type or an empty XMLNode
+         */
+        xml_node next_sibling_of_type(pugi::xml_node_type type_ = pugi::node_element) const;
+
         // Get attribute, starting the search from a hint (and updating hint so that searching for a sequence of attributes is fast)
         xml_attribute attribute(const char_t* name, xml_attribute& hint) const;
 

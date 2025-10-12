@@ -5705,6 +5705,20 @@ namespace pugi
 		return xml_node();
 	}
 
+	/**
+	 * @details determine the next xml_node sibling whose xml_node_type matches type_
+	 * @date 2024-04-26
+	 */
+	xml_node xml_node::next_sibling_of_type(pugi::xml_node_type type_) const {
+		if (_root) {
+			pugi::xml_node_struct* next = _root->next_sibling;
+			while (next && (PUGI_IMPL_NODETYPE(next) != type_)) next = next->next_sibling;
+			if (next)
+				return xml_node(next);
+		}
+		return xml_node();    // if no node matching type_ was found: return an empty node
+	}
+
 	PUGI_IMPL_FN xml_attribute xml_node::attribute(const char_t* name_, xml_attribute& hint_) const
 	{
 		xml_attribute_struct* hint = hint_._attr;
