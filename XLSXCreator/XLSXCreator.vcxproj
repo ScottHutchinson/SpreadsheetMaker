@@ -93,6 +93,7 @@
     <ClInclude Include="XLRelationships.h" />
     <ClInclude Include="XLSharedStrings.h" />
     <ClInclude Include="XLSheet.h" />
+    <ClInclude Include="XLSheetBase.h" />
     <ClInclude Include="XLWorkbook.h" />
     <ClInclude Include="XLWorksheet.h" />
     <ClInclude Include="XLXmlData.h" />
@@ -109,6 +110,7 @@
     <ClCompile Include="XLRelationships.cpp" />
     <ClCompile Include="XLSharedStrings.cpp" />
     <ClCompile Include="XLSheet.cpp" />
+    <ClCompile Include="XLSheetBase.cpp" />
     <ClCompile Include="XLWorkbook.cpp" />
     <ClCompile Include="XLWorksheet.cpp" />
     <ClCompile Include="XLXmlData.cpp" />

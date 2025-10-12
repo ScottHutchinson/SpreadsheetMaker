@@ -25,4 +25,19 @@ namespace XLSXCreator {
         return *m_xmlData->getParentDoc();
     }
 
+    /*
+     * @details This method returns a pointer to the underlying XMLDocument resource.
+     */
+    XMLDocument& XLXmlFile::xmlDocument() {
+        return const_cast<XMLDocument&>(static_cast<const XLXmlFile*>(this)->xmlDocument());    // NOLINT
+        // return *m_xmlData->getXmlDocument();    // <- why not this easy version?
+    }
+
+    /**
+     * @details This method returns a pointer to the underlying XMLDocument resource as const.
+     */
+    const XMLDocument& XLXmlFile::xmlDocument() const {
+        return *m_xmlData->getXmlDocument();
+    }
+
 } // namespace XLSXCreator

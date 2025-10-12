@@ -6,6 +6,15 @@
 
 namespace XLSXCreator {
 
+    class XLSheetError : public std::runtime_error {
+    public:
+
+        explicit XLSheetError(const std::string& _Message) : std::runtime_error(_Message.c_str()) {}
+
+        explicit XLSheetError(const char* _Message) : std::runtime_error(_Message) {}
+
+    };
+
     /**
      * @brief The XLAbstractSheet is a generalized sheet class, which functions as superclass for specialized classes,
      * such as XLWorksheet. It implements functionality common to all sheet types. This is a pure abstract class,
@@ -13,7 +22,7 @@ namespace XLSXCreator {
      */
     class XLSheet final : public XLXmlFile {
     private:   // ---------- Private Member Variables ---------- //
-        std::variant<XLWorksheet, XLWorksheet> m_sheet; // TODO: XLChartsheet
+        XLWorksheet m_sheet; // TODO: XLChartsheet
     public:
         /**
          * @brief The constructor. There are no default constructor, so all parameters must be provided for
@@ -23,20 +32,7 @@ namespace XLSXCreator {
          */
         explicit XLSheet(XLXmlData* xmlData);
 
-        template<typename T, typename = std::enable_if_t<std::is_same_v<T, XLWorksheet> || std::is_same_v<T, XLChartsheet>>>
-        T get() const {
-            try {
-                if constexpr (std::is_same<T, XLWorksheet>::value)
-                    return std::get<XLWorksheet>(m_sheet);
-
-                //else if constexpr (std::is_same<T, XLChartsheet>::value)
-                //    return std::get<XLChartsheet>(m_sheet);
-            }
-
-            catch (const std::bad_variant_access&) {
-                throw XLSheetError("XLSheet object does not contain the requested sheet type.");
-            }
-        }
+        XLWorksheet get();
 
     };
 

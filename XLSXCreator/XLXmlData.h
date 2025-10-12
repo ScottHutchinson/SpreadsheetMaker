@@ -60,8 +60,11 @@ YM      M9  MM    MM MM       MM    MM   d'  `MM.    MM            MM   d'  `MM.
 //#include "OpenXLSX-Exports.hpp"
 //#include "XLContentTypes.hpp"
 //#include "XLXmlParser.hpp"
+#include "external/pugixml/pugixml.hpp"
 
 namespace XLSXCreator {
+
+    using XMLDocument = pugi::xml_document;
 
     class XLDocument;
 
@@ -215,17 +218,17 @@ namespace XLSXCreator {
     //     */
     //    XLContentType getXmlType() const;
 
-    //    /**
-    //     * @brief Access the underlying XMLDocument object.
-    //     * @return A pointer to the XMLDocument object.
-    //     */
-    //    XMLDocument* getXmlDocument();
+        /**
+         * @brief Access the underlying XMLDocument object.
+         * @return A pointer to the XMLDocument object.
+         */
+        XMLDocument* getXmlDocument();
 
-    //    /**
-    //     * @brief Access the underlying XMLDocument object.
-    //     * @return A const pointer to the XMLDocument object.
-    //     */
-    //    const XMLDocument* getXmlDocument() const;
+        /**
+         * @brief Access the underlying XMLDocument object.
+         * @return A const pointer to the XMLDocument object.
+         */
+        const XMLDocument* getXmlDocument() const;
 
     //    /**
     //     * @brief Test whether there is an XML file linked to this object
@@ -236,12 +239,13 @@ namespace XLSXCreator {
     //private:
     //    // ===== PRIVATE MEMBER VARIABLES ===== //
 
-        XLDocument*                          m_parentDoc {}; /**< A pointer to the parent XLDocument object. >*/
-    //    std::string                          m_xmlPath {};   /**< The path of the XML data in the .xlsx zip archive. >*/
+        XLDocument* m_parentDoc {}; /**< A pointer to the parent XLDocument object. >*/
+        std::string m_xmlPath {};   /**< The path of the XML data in the .xlsx zip archive. >*/
     //    std::string                          m_xmlID {};     /**< The relationship ID of the XML data. >*/
     //    XLContentType                        m_xmlType {};   /**< The type represented by the XML data. >*/
-    //    mutable std::unique_ptr<XMLDocument> m_xmlDoc;       /**< The underlying XMLDocument object. >*/
-    };
+        std::unique_ptr<XMLDocument> m_xmlDoc;
+    }; // class XLXmlData
+
 } // namespace XLSXCreator
 
 #ifdef _MSC_VER    // conditionally enable MSVC specific pragmas to avoid other compilers warning about unknown pragmas

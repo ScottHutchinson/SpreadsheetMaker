@@ -9,8 +9,6 @@ namespace XLSXCreator {
 
     class XLDocument;
 
-    using XMLDocument = pugi::xml_document;
-
     class XLXmlFile {
     public:
         XLXmlFile() = default;

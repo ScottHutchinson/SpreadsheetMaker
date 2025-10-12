@@ -1,7 +1,7 @@
 // XLWorksheet.h
 #pragma once
 #include "XLXmlData.h"
-#include "XLXmlFile.h"
+#include "XLSheetBase.h"
 
 namespace XLSXCreator {
 
@@ -14,8 +14,9 @@ namespace XLSXCreator {
 
     };
 
-    class XLWorksheet : public XLXmlFile { // TODO: inherit XLSheetBase?
+    class XLWorksheet final : public XLSheetBase {
     public:
+        XLWorksheet() : XLSheetBase(nullptr) {};
         explicit XLWorksheet(XLXmlData* xmlData);
 
     };

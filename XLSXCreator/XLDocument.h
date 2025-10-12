@@ -19,6 +19,8 @@
 
 namespace XLSXCreator {
     
+    constexpr const unsigned int pugi_parse_settings = pugi::parse_default | pugi::parse_ws_pcdata; // TBD: | pugi::parse_comments
+
     class XLDocument {
         XLRelationships m_wbkRelationships{};
         XLWorkbook m_workbook{};
@@ -43,6 +45,13 @@ namespace XLSXCreator {
         XLWorkbook workbook() const;
 
         static void DLLEXPORT FromTextFile(std::string_view textFilePath, std::string_view xlsxFilePath, const char delimiter = ',');
+
+        /**
+         * @brief Get an XML file from the .xlsx archive.
+         * @param path The relative path of the file.
+         * @return A std::string with the content of the file
+         */
+        std::string extractXmlFromArchive(const std::string& path);
     };
 
 } // namespace XLSXCreator

@@ -469,6 +469,10 @@ namespace XLSXCreator {
         return query;    // Needed in order to suppress compiler warning
     } // XLDocument::execQuery
 
+    std::string XLDocument::extractXmlFromArchive(const std::string& path) {
+        return (m_archive.hasEntry(path) ? m_archive.getEntry(path) : "");
+    }
+
     void XLDocument::FromTextFile(std::string_view /*textFilePath*/, std::string_view xlsxFilePath, const char /*delimiter*/) {
         XLDocument doc;
         doc.create(xlsxFilePath);

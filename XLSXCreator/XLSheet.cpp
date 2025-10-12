@@ -12,4 +12,8 @@ namespace XLSXCreator {
         m_sheet = XLWorksheet(xmlData);
     }
 
+    XLWorksheet XLSheet::get() {
+        return m_sheet;
+    }
+
 } // namespace XLSXCreator

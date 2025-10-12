@@ -26,7 +26,7 @@ namespace XLSXCreator {
         XLQuery xmlQuery(XLQueryType::QueryXmlData);
         xmlQuery.setParam("xmlPath", "xl/" + xmlPath);
         auto sheet = XLSheet(parentDoc().execQuery(xmlQuery).result<XLXmlData*>());
-        return sheet.get<XLWorksheet>();
+        return sheet.get();
     }
 
 } // namespace XLSXCreator
