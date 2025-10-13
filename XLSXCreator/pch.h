@@ -9,9 +9,12 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
+#include <chrono>
 #include <fstream>
+#include <iostream>
 #include <memory>
 #include <string>
 #include <string_view>
+#include <vector>
 
 #endif //PCH_H

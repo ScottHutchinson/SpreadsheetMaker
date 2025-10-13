@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "XLWorksheet.h"
+#include "XLDocument.h"
 #include "external/pugixml/pugixml.hpp"
 
 namespace XLSXCreator {
@@ -65,5 +66,12 @@ namespace XLSXCreator {
     //        }
     //    }
     } // XLWorksheet::XLWorksheet
+
+    XLRowRange XLWorksheet::rows(uint32_t rowCount) const {
+        return XLRowRange(xmlDocument().document_element().child("sheetData"),
+            1,
+            rowCount,
+            parentDoc().sharedStrings());
+    }
 
 } // namespace XLSXCreator

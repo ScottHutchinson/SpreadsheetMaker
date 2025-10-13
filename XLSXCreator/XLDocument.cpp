@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "XLDocument.h"
+#include "XLCellValue.h"
 
 namespace XLSXCreator {
 
@@ -373,7 +374,7 @@ namespace XLSXCreator {
         m_sharedStrings = XLSharedStrings();  //
 
         //m_docRelationships = XLRelationships();
-        //m_wbkRelationships = XLRelationships();
+        m_wbkRelationships = XLRelationships();
         //m_contentTypes = XLContentTypes();
         //m_appProperties = XLAppProperties();
         //m_coreProperties = XLProperties();
@@ -401,6 +402,38 @@ namespace XLSXCreator {
         outfile.close();
         open(xlsxFilePath);
     }
+
+    /**
+     * @details Save the document with a new name. If present, the 'calcChain.xml file will be ignored. The reason for this
+     * is that changes to the document may invalidate the calcChain.xml file. Deleting will force Excel to re-create the
+     * file. This will happen automatically, without the user noticing.
+     */
+    void XLDocument::saveAs(const std::string& fileName, const bool forceOverwrite) {
+        // 2024-07-26: prevent silent overwriting of existing files
+        if (!forceOverwrite && pathExists(fileName)) {
+            using namespace std::literals::string_literals;
+            throw XLException("XLDocument::saveAs: refusing to overwrite existing file "s + fileName);
+        }
+
+        m_filePath = fileName;
+
+        // ===== Delete the calcChain.xml file in order to force re-calculation of the sheet
+        // TODO: Is this the best way to do it? Maybe there is a flag that can be set, that forces re-calculalion.
+        execCommand(XLCommand(XLCommandType::ResetCalcChain));
+
+        // ===== Add all xml items to archive and save the archive.
+        for (auto& item : m_data) {
+            bool xmlIsStandalone = true;
+            m_archive.addEntry(item.getXmlPath(),
+                item.getRawData(XLXmlSavingDeclaration()));
+        }
+        m_archive.save(m_filePath);
+    }
+
+    /**
+     * @details Save the document with the same name. The existing file will be overwritten.
+     */
+    void XLDocument::save() { saveAs(m_filePath, true); }
 
     /**
      * @details Get a const pointer to the underlying XLWorkbook object.
@@ -473,34 +506,36 @@ namespace XLSXCreator {
         return (m_archive.hasEntry(path) ? m_archive.getEntry(path) : "");
     }
 
-    void XLDocument::FromTextFile(std::string_view /*textFilePath*/, std::string_view xlsxFilePath, const char /*delimiter*/) {
+    void XLDocument::FromTextFile(const uint32_t numRows, std::string_view textFilePath, std::string_view xlsxFilePath, const char /*delimiter*/) {
+        std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
         XLDocument doc;
         doc.create(xlsxFilePath);
         XLWorkbook wb = doc.workbook();
         XLWorksheet ws = wb.worksheet("Sheet1");
-        //vector<XLCellValue> cellValues;
-        //cellValues.reserve(600); // number of columns
-        //string line;
-        //for (auto& row : ws.rows(count)) {
-        //    cellValues.clear();
-        //    std::getline(file, line);
-        //    std::stringstream ss(line);
-        //    string cellValue;
-        //    // TODO: Handle quoted string values.
-        //    while (std::getline(ss, cellValue, ',')) {
-        //        cellValues.emplace_back(cellValue);
-        //    }
+        std::vector<XLCellValue> cellValues;
+        cellValues.reserve(600); // number of columns
+        std::ifstream file(textFilePath.data());
+        std::string line;
+        for (auto& row : ws.rows(numRows)) {
+            cellValues.clear();
+            std::getline(file, line);
+            std::stringstream ss(line);
+            std::string cellValue;
+            // TODO: Handle quoted string values.
+            while (std::getline(ss, cellValue, ',')) {
+                cellValues.emplace_back(cellValue);
+            }
 
-        //    row.values() = cellValues;
-        //}
-        //std::chrono::steady_clock::time_point xmlEnd = std::chrono::steady_clock::now();
-        //std::cout << "XML Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(xmlEnd - begin).count() << " milliseconds" << std::endl;
-        //doc.save();
-        //std::chrono::steady_clock::time_point saveEnd = std::chrono::steady_clock::now();
-        //std::cout << "Save Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(saveEnd - xmlEnd).count() << " milliseconds" << std::endl;
-        //doc.close();
-        //std::chrono::steady_clock::time_point closeEnd = std::chrono::steady_clock::now();
-        //std::cout << "Close Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(closeEnd - saveEnd).count() << " milliseconds" << std::endl;
+            row.values() = cellValues;
+        }
+        std::chrono::steady_clock::time_point xmlEnd = std::chrono::steady_clock::now();
+        std::cout << "XML Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(xmlEnd - begin).count() << " milliseconds" << std::endl;
+        doc.save();
+        std::chrono::steady_clock::time_point saveEnd = std::chrono::steady_clock::now();
+        std::cout << "Save Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(saveEnd - xmlEnd).count() << " milliseconds" << std::endl;
+        doc.close();
+        std::chrono::steady_clock::time_point closeEnd = std::chrono::steady_clock::now();
+        std::cout << "Close Elapsed Time = " << std::chrono::duration_cast<std::chrono::milliseconds>(closeEnd - saveEnd).count() << " milliseconds" << std::endl;
     }
 
 } // namespace XLSXCreator

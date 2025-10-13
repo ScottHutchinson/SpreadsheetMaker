@@ -179,14 +179,14 @@ namespace XLSXCreator {
     //     */
     //    void setRawData(const std::string& data);
 
-    //    /**
-    //     * @brief Get the raw data for the underlying XML document. This function will retrieve the raw XML text data
-    //     * from the underlying XMLDocument object. This will mainly be used when saving data to the .xlsx package
-    //     * using the save function in the XLDocument class.
-    //     * @param savingDeclaration @optional specify an XML saving declaration to use
-    //     * @return A std::string with the raw XML text data.
-    //     */
-    //    std::string getRawData(XLXmlSavingDeclaration savingDeclaration = XLXmlSavingDeclaration{}) const;
+        /**
+         * @brief Get the raw data for the underlying XML document. This function will retrieve the raw XML text data
+         * from the underlying XMLDocument object. This will mainly be used when saving data to the .xlsx package
+         * using the save function in the XLDocument class.
+         * @param savingDeclaration @optional specify an XML saving declaration to use
+         * @return A std::string with the raw XML text data.
+         */
+        std::string getRawData(XLXmlSavingDeclaration savingDeclaration = XLXmlSavingDeclaration{}) const;
 
         /**
          * @brief Access the parent XLDocument object.
@@ -200,11 +200,11 @@ namespace XLSXCreator {
          */
         const XLDocument* getParentDoc() const;
 
-    //    /**
-    //     * @brief Retrieve the path of the XML data in the .xlsx zip archive.
-    //     * @return A std::string with the path.
-    //     */
-    //    std::string getXmlPath() const;
+        /**
+         * @brief Retrieve the path of the XML data in the .xlsx zip archive.
+         * @return A std::string with the path.
+         */
+        std::string getXmlPath() const;
 
     //    /**
     //     * @brief Retrieve the relationship ID of the XML file.

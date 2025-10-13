@@ -60,6 +60,18 @@
     <ClInclude Include="XLSheetBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="XLCellValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLRow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XLXmlNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -96,6 +108,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="XLSheetBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLCellValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLRow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XLXmlNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

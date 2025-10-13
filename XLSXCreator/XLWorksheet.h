@@ -1,5 +1,6 @@
 // XLWorksheet.h
 #pragma once
+#include "XLRow.h"
 #include "XLXmlData.h"
 #include "XLSheetBase.h"
 
@@ -18,6 +19,8 @@ namespace XLSXCreator {
     public:
         XLWorksheet() : XLSheetBase(nullptr) {};
         explicit XLWorksheet(XLXmlData* xmlData);
+
+        XLRowRange rows(uint32_t rowCount) const;
 
     };
 

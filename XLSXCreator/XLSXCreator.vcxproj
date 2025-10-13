@@ -88,9 +88,12 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="IZipArchive.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="XLCellValue.h" />
     <ClInclude Include="XLCommandQuery.h" />
+    <ClInclude Include="XLConstants.h" />
     <ClInclude Include="XLDocument.h" />
     <ClInclude Include="XLRelationships.h" />
+    <ClInclude Include="XLRow.h" />
     <ClInclude Include="XLSharedStrings.h" />
     <ClInclude Include="XLSheet.h" />
     <ClInclude Include="XLSheetBase.h" />
@@ -98,6 +101,7 @@
     <ClInclude Include="XLWorksheet.h" />
     <ClInclude Include="XLXmlData.h" />
     <ClInclude Include="XLXmlFile.h" />
+    <ClInclude Include="XLXmlNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -106,8 +110,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="XLCellValue.cpp" />
     <ClCompile Include="XLDocument.cpp" />
     <ClCompile Include="XLRelationships.cpp" />
+    <ClCompile Include="XLRow.cpp" />
     <ClCompile Include="XLSharedStrings.cpp" />
     <ClCompile Include="XLSheet.cpp" />
     <ClCompile Include="XLSheetBase.cpp" />
@@ -115,6 +121,7 @@
     <ClCompile Include="XLWorksheet.cpp" />
     <ClCompile Include="XLXmlData.cpp" />
     <ClCompile Include="XLXmlFile.cpp" />
+    <ClCompile Include="XLXmlNode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

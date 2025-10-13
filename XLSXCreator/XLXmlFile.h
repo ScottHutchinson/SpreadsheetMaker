@@ -1,11 +1,11 @@
 // XLXmlFile.h
 #pragma once
 #include "XLXmlData.h"
-#include "external/pugixml/pugixml.hpp"
+#include "XLXmlNode.h"
 
 namespace XLSXCreator {
 
-    using XMLNode = pugi::xml_node;
+    using XMLNode = XLXmlNode;
 
     class XLDocument;
 
