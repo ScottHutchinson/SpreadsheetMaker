@@ -5,8 +5,6 @@
 
 namespace XLSXCreator {
 
-    using XMLNode = XLXmlNode;
-
     class XLDocument;
 
     class XLXmlFile {

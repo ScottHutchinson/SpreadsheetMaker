@@ -1,7 +1,7 @@
 #pragma once
 #include "XLConstants.h"
 #include "XLSharedStrings.h"
-#include "XLXmlFile.h" // for using XMLNode...
+#include "XLXmlNode.h" // for using XMLNode...
 
 namespace XLSXCreator {
 
@@ -73,6 +73,15 @@ namespace XLSXCreator {
         XLRowDataProxy           m_rowDataProxy;
 
     public:
+        XLRow();
+
+        /**
+         * @brief
+         * @param rowNode
+         * @param sharedStrings
+         */
+        XLRow(const XMLNode& rowNode, const XLSharedStrings& sharedStrings);
+
         XLRowDataProxy& values();
 
         /**

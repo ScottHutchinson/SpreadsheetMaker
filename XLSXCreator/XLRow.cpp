@@ -55,6 +55,24 @@ namespace XLSXCreator {
         return result;
     }
 
+    XLRow::XLRow()
+        : m_rowNode(nullptr),
+        m_sharedStrings(XLSharedStringsDefaulted),
+        m_rowDataProxy(this, m_rowNode.get()) {
+    }
+
+    /**
+     * @details Constructs a new XLRow object from information in the underlying XML file. A pointer to the corresponding
+     * node in the underlying XML file must be provided.
+     * @pre
+     * @post
+     */
+    XLRow::XLRow(const XMLNode& rowNode, const XLSharedStrings& sharedStrings)
+        : m_rowNode(std::make_unique<XMLNode>(rowNode)),
+        m_sharedStrings(sharedStrings),
+        m_rowDataProxy(this, m_rowNode.get()) {
+    }
+
     XLRowDataProxy& XLRow::values() { return m_rowDataProxy; }
 
     bool XLRow::empty() const { return (!m_rowNode) || m_rowNode->empty(); }

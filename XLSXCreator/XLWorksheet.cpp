@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "XLWorksheet.h"
 #include "XLDocument.h"
-#include "external/pugixml/pugixml.hpp"
+#include "XLXmlNode.h"
 
 namespace XLSXCreator {
 

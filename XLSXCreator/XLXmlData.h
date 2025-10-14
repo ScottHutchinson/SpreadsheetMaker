@@ -60,7 +60,7 @@ YM      M9  MM    MM MM       MM    MM   d'  `MM.    MM            MM   d'  `MM.
 //#include "OpenXLSX-Exports.hpp"
 //#include "XLContentTypes.hpp"
 //#include "XLXmlParser.hpp"
-#include "external/pugixml/pugixml.hpp"
+#include "XLXmlNode.h"
 
 namespace XLSXCreator {
 
